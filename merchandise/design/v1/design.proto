@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package merchandise.design.v1;
+
+option go_package = "cmk/generated/merchandise/design/v1;designv1";
+
+import "google/protobuf/timestamp.proto";
+
+message Design {
+  google.protobuf.Timestamp created_at = 1;
+  google.protobuf.Timestamp updated_at = 2;
+  string id = 3;
+  string item = 4;
+  string color = 5;
+  string product_category = 6;
+  string metal = 7;
+  double metal_rate = 8;
+  string image_url = 9;
+  string designer_id = 10;
+  string parent_id = 11;
+  repeated Stone stones = 12;
+  repeated Design histories = 13;
+}
+
+message Stone {
+  string parcel = 1;
+  int32 pieces = 2;
+  double carat = 3;
+}
+
+// Get
+message GetRequest {
+  string id = 1;
+}
+message GetResponse {
+  Design design = 1;
+}
+
+// GetAll
+message GetAllRequest {
+}
+message GetAllResponse {
+  repeated Design designs = 1;
+}
+
+service DesignService {
+  rpc Get(GetRequest) returns (GetResponse) {}
+  rpc GetAll(GetAllRequest) returns (GetAllResponse) {}
+}

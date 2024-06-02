@@ -1,0 +1,26 @@
+type Query {
+  get(id: ID!): Design!
+  getAll: [Design]!
+}
+
+type Design {
+  created_at: String!
+  updated_at: String!
+  id: ID!
+  item: String!
+  color: String!
+  productCategory: String!
+  metal: String!
+  metalRate: Float!
+  imageUrl: String!
+  designerId: String
+  parentId: String
+  stones: [Stone]!
+  histories: [Design]!
+}
+
+type Stone {
+  parcel: String!
+  pieces: Int!
+  carat: Float!
+}
